@@ -1,0 +1,49 @@
+{
+    "version": "1.0.1",
+    "target": "project.axf",
+    "outpath": "output/",
+    "toolchain": {
+        "path": "D:/Keil5/ARM/ARMCC/bin/",
+        "prefix": "",
+        "suffix": "",
+        "as": "armasm",
+        "cc": "armcc",
+        "ld": "armlink",
+        "ar": "armar",
+        "objcopy": "fromelf",
+        "readelf": "readelf"
+    },
+    "flag": {
+        "cc": [
+            "--cpu Cortex-M4.fp --apcs=interwork",
+            "-g -O0",
+            "-DSTM32F40_41xxx -DSTM32F40_41xxx -DUSE_STDPERIPH_DRIVER "
+        ],
+        "as": [
+            "--cpu Cortex-M4.fp -g --apcs=interwork",
+            "--xref"
+        ],
+        "ld": [
+            "--cpu Cortex-M4.fp",
+            "--strict --scatter build/mqmake/armcc/project.sct",
+            "--summary_stderr --info summarysizes --map --xref --callgraph --symbols",
+            "--info sizes --info totals --info unused --info veneers  --list output/project.map"
+        ]
+    },
+    "include": [
+        "src/app/inc/",
+        "src/bsp/inc/",
+        "src/platform/inc/",
+        "src/stm32f4xx_lib/inc/"
+    ],
+    "src": [
+        "src/app/*.c",
+        "src/bsp/*.c",
+        "src/stm32f4xx_lib/*.c",
+        "src/platform/system_stm32f4xx.c",
+        "src/platform/startup_stm32f40_41xxx_armcc.s"
+    ],
+    "append": [
+        ""
+    ]
+}

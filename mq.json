@@ -1,0 +1,11 @@
+{
+    "author": "",
+    "dependencies": {},
+    "description": "",
+    "license": "",
+    "name": "",
+    "script": {
+        "make":"mqmake -f build/mqmake/armcc/project_armcc.json",
+        "clean":"del /q/f output\\*.*"
+    }
+}

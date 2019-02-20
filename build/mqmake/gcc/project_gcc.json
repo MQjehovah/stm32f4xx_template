@@ -1,0 +1,53 @@
+{
+    "version": "1.0.1",
+    "target": "project.elf",
+    "outpath": "output/",
+    "toolchain": {
+        "path": "D:/gcc-arm-none-eabi/bin/",
+        "prefix": "arm-none-eabi-",
+        "suffix": "",
+        "as": "gcc",
+        "cc": "gcc",
+        "ld": "gcc",
+        "ar": "gcc",
+        "objcopy": "fromelf",
+        "readelf": "readelf"
+    },
+    "flag": {
+        "cc": [
+            "-mcpu=cortex-m4 -march=armv7e-m -mthumb -mno-thumb-interwork",
+            "-ffunction-sections -fdata-sections -fno-exceptions",
+            "-mfloat-abi=softfp -mfpu=fpv5-sp-d16",
+            "-Os -g -DSTM32F407ZG -DUSE_STDPERIPH_DRIVER"
+        ],
+        "as": [
+            "-mcpu=cortex-m4 -march=armv7e-m -g -mthumb -mlittle-endian",
+            "-mfloat-abi=softfp -mfpu=fpv5-sp-d16 -mthumb-interwork"
+        ],
+        "ld": [
+            "-T build/mqmake/gcc/STM32F407ZG_FLASH.ld",
+            "-mcpu=cortex-m4 -march=armv7e-m -mthumb -mfpu=fpv5-sp-d16",
+            "-specs=nano.specs -specs=nosys.specs -mfloat-abi=softfp",
+            "-L\"D:/gcc-arm-none-eabi/arm-none-eabi/lib/armv7e-m/\"",
+            "-Wl,--start-group -lgcc -lm -Wl,--end-group",
+            "-Wl,--gc-sections -Wl,--defsym=malloc_getpagesize_P=0x80 ",
+            "-static -Wl,-cref,-u,Reset_Handler -Wl,-Map=output/Project.map"
+        ]
+    },
+    "include": [
+        "src/app/inc/",
+        "src/bsp/inc/",
+        "src/platform/inc/",
+        "src/stm32f4xx_lib/inc/"
+    ],
+    "src": [
+        "src/app/*.c",
+        "src/bsp/*.c",
+        "src/stm32f4xx_lib/*.c",
+        "src/platform/system_stm32f4xx.c",
+        "src/platform/startup_stm32f40_41xxx_gcc.s"
+    ],
+    "append": [
+        ""
+    ]
+}

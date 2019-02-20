@@ -1,0 +1,16 @@
+set mem inaccessible-by-default off
+target remote localhost:2331
+file  E:/mq/template/stm32f4xx_template/output/project.elf
+monitor clrbp
+monitor reset
+monitor halt
+monitor regs
+monitor flash breakpoints 1
+monitor semihosting enable
+monitor semihosting IOClient 1
+load
+monitor clrbp
+monitor reset
+monitor halt
+monitor regs
+monitor go
